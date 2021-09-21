@@ -1,12 +1,9 @@
-import Head from 'next/head';
+import Meta from '../components/Meta';
 
 const about = () => {
     return (
         <>  
-            <Head>
-                <title>Next.js About page title</title>
-                <meta name='keywords' content='about section'/>
-            </Head>
+            <Meta title = 'About Custom Meta component' />
             <h1>About ✔</h1>
         </>
     )

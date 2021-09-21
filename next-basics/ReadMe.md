@@ -169,3 +169,70 @@
 
 > ## Nested Routing in Next.js
 
+- **example route /app/articles/id that shows a detailed view of an article**
+
+                        make a seperate folder as article inside of pages
+                        make another dir called [id] inside of article
+                        then index.js inside of [id] that defines a a single article
+
+                        # to get particular article id next/router can be used refer index.js in article->[id]->index.js
+
+
+---
+
+> getServerSideProps (fetching data) (refer index.js in article->[id])
+
+- **fetches the data at time of request**
+
+                    the context holds the routes params of the page can be used to grab like a particular article id and then fetch data accordingly.
+
+                    # just like staticProps the props can be returned which then can be grabbed by the page itself
+
+> ## IMPORTANT it is always better though to use the combination of getStaticProps & getStaticPath to fetch data and then generate dynamic paths over getServerProps as the later is slow as it only fetches data on user request.
+
+                        click on any article
+                        then change the end id to say 20 though we only have 6 articles at the home still the 20 id post will be first fetched then dynamic path is set up with the getStaticPaths prop in next.
+
+---
+
+> Exporting a static website in next.js
+
+                    next export
+
+- **when deployment is done at vercel then everything is deployed however when we export it goes to a out directory that is just a static website**
+
+                    # in package.json
+                    "build": "next build && next export"
+
+                    npm run build
+                    # out dir is just a static website that can be exported
+
+                    npm i -g serve --save
+                    # serve the out folder at 8000 port
+                    serve -s out -p 8000
+                    
+                    # go to loclhost://8000
+                    # and this static website will be high speed as the data is prefetched.
+
+
+                    
+---
+
+> Handling API Routes in Next.js (refer api dir)
+
+- **much similar to express how we handle routes with some tweaks**
+- **their can be external api calls, database calls from frontend via next.js**
+- **Once we write our api calls inside api dir it is accessible in next.js by localhost:port/resource**
+                    # automatically executes code 
+                    localhost:3000/api/articles
+
+---
+
+> Using the API Data (refer pages->index.js)
+
+- **to use the api fetched data inside of api dir to be used by frontend**
+
+---
+
+> Custom meta component (for SEO) either use thirdparty npm modules or refer Meta.js in components dir for example basic that is used in index .js article->[id] and ArticleItem
+
