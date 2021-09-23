@@ -86,6 +86,46 @@ const user1 = {
     name: 'John'
 };
 const p1 = 1;
-// 🧨🧨🧨🧨🧨🧨🧨🧨 however an interface is not possible
-//interface Point1 = number | string; // error
-// 🎢🎢🎢🎢🎢🎢🎢🎢🎢🎢🎢🎢Function Interfaces
+const add = (x, y) => x + y;
+const sub = (x, y) => x - y;
+const mul = (x, y) => x * y;
+const div = (x, y) => x / y;
+class Person {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+    register() {
+        return `${this.name} is now registered`;
+    }
+}
+const john = new Person(1, 'JohnBaba');
+const wick = new Person(2, 'YagaBoo');
+console.log(john, wick);
+//console.log(john.id); // error as id is private
+console.log(john.register());
+console.log(wick.register());
+// 💡💡💡💡💡💡💡💡💡💡💡💡 Extending Classes
+// subclass extending the parent Person class
+class Employee extends Person {
+    constructor(id, name, position) {
+        super(id, name);
+        // does this for the base class
+        // this.id = id;
+        // this.name = name;
+        this.position = position;
+    }
+}
+const emp = new Employee(13, 'JaneDoe', 'Developer');
+console.log(emp.register());
+console.log(emp.name);
+// 🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳 Generics 
+// USED TO BUILD REUSABLE COMPONENTS with Placeholders for different data types
+// generic angle bracket T like a placeholder
+function getArray(items) {
+    return new Array().concat(items);
+}
+// now suppose we want two different arrays one to be number & one to be array of strings
+let numArray = getArray([1, 2, 3, 4]); // <number> replaces <T> placeholder
+let strArray = getArray(['john', 'baba', 'kaka']); // <string> replaces <T> placeholder
+//strArray.push(1); //error

@@ -84,3 +84,14 @@
                         # compiles index.ts inside src
                         # creates index.js inside of dist
 
+
+
+---
+
+> How to Include typescript with react
+
+                npx create-react-app myProject --template typescript
+                # so all .js and .jsx are converted to .ts and .tsx in src folder
+                npm run start
+
+- **further make sure to use .ts instead of .js and .tsx instead of .jsx when creating components,pages,routes in react/next**
