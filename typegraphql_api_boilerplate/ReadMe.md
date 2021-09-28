@@ -49,7 +49,7 @@
                     src/entity/*.*
                     # includes all the files inside of entity wheather javascript or typescript
 
-  - [x] 🧨 Creating User entity/User Schema refer User.ts inside src->entity
+  - [x] **🧨 Creating User entity/User Schema refer User.ts inside src->entity**
 
                     import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
@@ -109,7 +109,65 @@
                                     }
                                 }
 
-- [ ] validation
+- [x] **✔ validation typegraphql refer RegisterInput.ts(register dir) and Register.ts inside of modules->user**
+
+  - [x] adding validations to graphql resolver via decorator and built in methods of graphql
+
+    - [x] **🦨 via class-validator, a class can be created and add tags or decorators any type of condition we want them to meet refer- https://typegraphql.com/docs/validation.html**
+
+            npm i class-validator --save
+
+            # specify a seperate dir as register,  modules->user->register->Registerinput.ts
+            # Registerinput.ts
+
+            import { IsEmail, Length } from "class-validator";
+            import { Field, InputType } from "type-graphql";
+
+            @InputType()
+            export class RegisterInput {
+
+              @Field()
+              @Length(1,255)
+              firstName: string;
+
+              @Field()
+              @Length(1,255)
+              lastName: string;
+
+              @Field()
+              @IsEmail()
+              email: string;
+
+              @Field()
+              password: string;
+            }
+
+            # So now mutation becomes inside graphql playground
+              mutation{
+              Register(
+                input :
+                {
+                  firstName:"Jason",
+                  lastName:"Mamoa",
+                  email:"aqua@man.co",
+                  password:"452345f"
+                }
+              ){
+                id
+                firstName
+                lastName
+                email
+                name
+              }
+            }
+
+  - [x] **🎇 further apollo server now automatically formats error messagesso that the end user can have proper understanding why the argument/input caused error done via ArgumentValidationError in type-graphql refer - https://typegraphql.com/docs/validation.html**
+  - [x] **🎇 Custom decorators can be added too for validation check in graphql refer https://github.com/typestack/class-validator#custom-validation-decorators**
+
+  - [x] **🎈 ts-node-dev(faster) & upgraded version of nodemon uses ts-node under the hood for compilation hence faster.**
+  - [x] **🎈Inside tsconfig.json esModuleInterop:true & set allowSyntheticDefualtImports:true, this way we can get rid of as syntax while importing**
+  - [x] **🎈 typegraphql way of adding the @Field resolver directly on the @ObjectType inside of user entity/schema instead of mentioning in the Register.ts**
+
 - [ ] login
 - [ ] authorization /middleware
 - [ ] confirmation email

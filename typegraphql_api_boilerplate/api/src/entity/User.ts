@@ -1,5 +1,6 @@
-import { Field, ID, ObjectType } from "type-graphql";
+import { Field, ID, ObjectType, Root } from "type-graphql";
 import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+
 
 // observer the @ decorators that are used in typeorm to distinguish between entity,column etc.
 // Typeorm library uses the decorator function to shorten 
@@ -33,8 +34,14 @@ export class User extends BaseEntity{
 
     // this is only graphql field type not stored in DB
     // combination of both fname+lname
+    // @Field()
+    // name: string;
+
     @Field()
-    name: string;
+    name(@Root() parent: User): string{
+        return `${parent.firstName} ${parent.lastName}`;
+    };
+
 
     @Column()
     password : string;
