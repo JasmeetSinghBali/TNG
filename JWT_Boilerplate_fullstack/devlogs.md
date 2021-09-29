@@ -1,4 +1,6 @@
-> 🎨 Blueprint ( How the snippet was made!!)
+> ## 🎨 Blueprint ( How the snippet was made!!)
+
+> Step-1 Set Up typeorm
 
 - [x] npm i -g typeorm
 - [x] generate boilerplate server side code with typeorm
@@ -26,3 +28,31 @@
                 Loading users from the database...
                 Loaded users:  [ User { id: 1, firstName: 'Timber', lastName: 'Saw', age: 25 } ]
                 Here you can setup and run express/koa/any other framework.
+
+> Step -2 Setup graphql server with express
+
+- [x] npm i express apollo-server-express graphql --save
+- [x] dev depend , types for express and graphql(apollo already comes with types)
+
+                    # for autocompletion and types for express and graphql package
+                    npm i @types/express  @types/graphql --save-dev
+
+- [x] **🎈 changes in index.ts inside src**
+
+                            # remove or comment out the createConnection function completely
+                            import express from 'express';
+                            const api = express();
+
+                            # a lambda function calling itself
+                            # executes automatically when index.ts is compiled
+                            # all the asynchronous code can be written here
+                            (async()=>{})()
+
+- [x] visit localhost:5000 & localhost:5000/graphql to check everything is set up correctly
+
+> Step-3 Set up typegraphql
+
+- [x] npm i type-graphql --save
+- [x] build schema in better way via type-graphql refer **src-> UserResolver.ts** and then use that inside of index.ts to build Schema
+
+> Step-4 Register Resolver 19:00
