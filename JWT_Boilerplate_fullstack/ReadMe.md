@@ -29,3 +29,20 @@
 - Persisting session on refresh
 - handling expired tokens
 - fetching current user in header
+
+> 🎇Important Facts
+
+- [x] entity dir refers to the schema of different tables inside of the postgreSQL database.
+- [x] typeorm is the tool to interact,create and manage schema's and perform CRUD operations with the DB in a managable way.
+- [x] to tell typeorm to create a table via specific schema in the ormconfig.json
+
+                # via entity mapping
+                entities: ["src/entity/**/*.ts"]
+
+                # to automatically create table inside our db via schema/entity
+                synchronize:true
+
+- [x] and then in index.ts inside src just need to establish a connection
+      await createConnection()
+
+- [x] remember to store hashed password in db not plain passwords can use bcrypt or argon

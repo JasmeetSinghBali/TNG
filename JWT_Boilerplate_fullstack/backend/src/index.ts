@@ -3,11 +3,13 @@ import express from 'express';
 import {ApolloServer} from 'apollo-server-express';
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./UserResolver";
+import { createConnection } from "typeorm";
 
 
 
 
 // ✨lambda function for Async code✨
+// wraps the entire code inside this lambda async function
 (async()=>{
 
     const app = express();
@@ -20,6 +22,10 @@ import { UserResolver } from "./UserResolver";
             status: '🔋 Up'
         });
     });
+
+    // ✔ so that table are build inside db postgres a/c to schema mentioned in entity dir
+    await createConnection();
+    
 
     // 🎇Setting up apollo server with graphql schema via UserResolver.ts backed by type-graphql🎇
     const apolloServer = new ApolloServer({

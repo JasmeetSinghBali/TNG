@@ -55,4 +55,20 @@
 - [x] npm i type-graphql --save
 - [x] build schema in better way via type-graphql refer **src-> UserResolver.ts** and then use that inside of index.ts to build Schema
 
-> Step-4 Register Resolver 19:00
+> Step-4 Register Resolver (mutation) refer UserResolver.ts and entity->User.ts
+
+              # Register user
+               mutation{
+                 register(email: "John@doe.co" , password: "12345")
+               }
+
+              # Retrieve all Users
+              {
+                users {
+                  email
+                  id
+                }
+              }
+
+
+> Step-5 Login Users 30:15
