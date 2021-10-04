@@ -70,5 +70,18 @@
                 }
               }
 
+> Step-5 Login Users
 
-> Step-5 Login Users 30:15
+- [x] login user and give them access and refresh tokens refer UserResolver.ts
+
+> the promise helps typescript to check that login mutation returns an object with access token.
+
+                            async login(
+                        @Arg('email') email: string,
+                        @Arg('password') password: string
+                    ): Promise <LoginResponse>
+
+> npm i jsonwebtoken --save for creation & signing and jwt tokens
+> npm i @types/jsonwebtoken --save-dev
+
+38:43 refresh token generation
