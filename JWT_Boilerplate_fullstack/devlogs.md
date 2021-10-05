@@ -70,7 +70,7 @@
                 }
               }
 
-> Step-5 Login Users
+> Step-5 Login Users & return access tokens
 
 - [x] login user and give them access and refresh tokens refer UserResolver.ts
 
@@ -84,4 +84,50 @@
 > npm i jsonwebtoken --save for creation & signing and jwt tokens
 > npm i @types/jsonwebtoken --save-dev
 
-38:43 refresh token generation
+                    # Login
+                    mutation{
+                      login(email:"John@doe.co",password:"12345"){
+                        accessToken
+                      }
+                    }
+
+> Step-6 Generate and Return refresh tokens
+
+**refresh token will be stored in a cookie named jid via res.cookie**
+
+              # config apollo server to pass context to grab the req,res
+              context: ({ req,res })=>({ req,res })
+
+> now req and res can be accessed in graphql resolvers
+> refer MyContext.ts & index.ts
+> make sure to set request.credentials: "include" in the settings graphql playground
+
+              # Login
+                    mutation{
+                      login(email:"John@doe.co",password:"12345"){
+                        accessToken
+                      }
+                    }
+              # a cookie is observed in the network tab in one of the graphql requests
+              jid
+              # or go the response headers set-cookie
+              jid=LongRefreshTokenString
+
+> Step -7 Protected Routes with isAuthMiddleware.ts
+
+                            # Login
+                            mutation{
+                              login(email:"John@doe.co",password:"12345"){
+                                accessToken
+                              }
+                            }
+
+                            # Protected Route
+                             {
+                               protectedRouteExample
+                             }
+                            # headers(Use AccessToken recieved after mutation login response)
+                            authorization : Bearer AccessToken
+
+Step-8 Handle case when someone make request with expired access token
+1:02:45

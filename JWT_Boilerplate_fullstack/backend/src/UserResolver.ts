@@ -1,10 +1,11 @@
-import { Resolver, Query, Mutation , Arg, ObjectType, Field} from 'type-graphql';
+import { Resolver, Query, Mutation , Arg, ObjectType, Field, Ctx, UseMiddleware} from 'type-graphql';
 import { hash, compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 import { User } from './entity/User';
-
+import { MyContext } from './MyContext';
 
 import dotenv from 'dotenv';
+import { createAccessToken, createRefreshToken } from './JWTService';
+import { isAuthMiddleware } from './isAuthMiddleware';
 dotenv.config();
 
 // ✨ Custom return type for log in mutation
@@ -21,6 +22,17 @@ export class UserResolver{
     @Query(()=> String)
     hello(){
         return 'hi'
+    }
+
+    // ✨protected route example with UseMiddleware typegraphql✨
+    // UseMiddleware runs the callback code before going to next, next represents when we are done with current middleware logics
+    @Query(()=> String)
+    @UseMiddleware(isAuthMiddleware)
+    protectedRouteExample(
+        @Ctx() { payload }: MyContext
+        ){
+        console.log(payload);
+        return `user id: ${payload!.userId}, email: ${payload!.userEmail}`;
     }
 
     // 🧨returns all the user in the users db from postgres
@@ -54,7 +66,8 @@ export class UserResolver{
     @Mutation(()=> LoginResponse)
     async login(
         @Arg('email') email: string,
-        @Arg('password') password: string
+        @Arg('password') password: string,
+        @Ctx() { res }: MyContext
     ): Promise <LoginResponse>{
         try{
             // 🎇check user exists with the given email in DB?
@@ -67,12 +80,25 @@ export class UserResolver{
         if(!valid){
             throw new Error('🐱‍👤Wrong Password..')
         }
+
+        
         
         // if above checks are true then user logs in gets access token
+        // ✔ storing refresh token as cookie, different payload can be given apart from user id,email also
+        // Make sure to use different secret for refresh token sign & access token sign
+        res.cookie(
+            "jid",
+            createRefreshToken(user),
+            {
+                // now it can only accesed via request not via javascript
+                httpOnly: true
+            }
+        );
+
         return {
             // signing/creating a token with payload as userId,userEmail
             // with signing secret that can be anything stored in .env
-            accessToken: sign({userId: user.id, userEmail: user.email}, process.env.JWT_SIGNING_SECRET as string,{ expiresIn: "15m" })
+            accessToken: createAccessToken(user)
         };
 
         }catch(err){
