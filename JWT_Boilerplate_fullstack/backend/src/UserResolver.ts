@@ -6,6 +6,7 @@ import { MyContext } from './MyContext';
 import dotenv from 'dotenv';
 import { createAccessToken, createRefreshToken } from './JWTService';
 import { isAuthMiddleware } from './isAuthMiddleware';
+import { sendRefreshToken } from './sendRefreshToken';
 dotenv.config();
 
 // ✨ Custom return type for log in mutation
@@ -86,14 +87,7 @@ export class UserResolver{
         // if above checks are true then user logs in gets access token
         // ✔ storing refresh token as cookie, different payload can be given apart from user id,email also
         // Make sure to use different secret for refresh token sign & access token sign
-        res.cookie(
-            "jid",
-            createRefreshToken(user),
-            {
-                // now it can only accesed via request not via javascript
-                httpOnly: true
-            }
-        );
+        sendRefreshToken(res,createRefreshToken(user));
 
         return {
             // signing/creating a token with payload as userId,userEmail

@@ -129,5 +129,53 @@
                             # headers(Use AccessToken recieved after mutation login response)
                             authorization : Bearer AccessToken
 
-Step-8 Handle case when someone make request with expired access token
-1:02:45
+> Step-8 Handle case when someone make request with expired access token i.e Cookie based regeneration of new Refresh & new Access token via old refresh token inside request header cookies /refresh_token refer index.ts
+
+**A seperate route to handle the refresh tokens refer index.ts**
+**the refresh token can be grabbed from request header with cookie named as jid**
+**use postman to investigate request header and add a cookie as localhost named jid**
+
+- **for parsing the cookie**
+
+                  npm i cookie-parser --save
+                  npm i @types/cookie-parser --save-dev
+
+
+                  # make a login graphql request
+                  mutation{
+                    login(email:"John@doe.co",password:"12345"){
+                      accessToken
+                    }
+                  }
+
+                  # and use the accessToken as cookie jid in postman to get new access token
+                  # it should result in empty access token
+                  # expected response
+                  {
+                    ok: false,
+                    accessToken:''
+                  }
+
+> test out the /refresh_token route as
+
+                  # make a login request from graphql
+                  mutation{
+                    login(email:"John@doe.co",password:"12345"){
+                      accessToken
+                    }
+                  }
+
+                  # while opening your dev tools clear the network request and make login request
+                  # find the one which contains response cookie header as jid
+                  # copy the jid in the  cookies tab containing the refresh token
+                  # navigate to postman
+                  jid: grabbedRefreshTokenFromResponseHeadersLoginRequestGraphql
+
+                  POST /refresh_token
+
+                  # expected response
+                  # spits back new access token
+                  {
+                    ok: true,
+                    accessToken:'457847852n435j2h3j4h2j3h4j2h3j4234'
+                  }
