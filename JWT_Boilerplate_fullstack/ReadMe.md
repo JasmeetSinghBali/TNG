@@ -46,3 +46,44 @@
       await createConnection()
 
 - [x] remember to store hashed password in db not plain passwords can use bcrypt or argon
+
+> ## Test Backend
+
+- npm run start
+- localhost:5000/graphql
+
+                                    # Test route
+                                    # {
+                                    #   hello
+                                    # }
+
+                                    # Register user
+                                    # mutation{
+                                    #   register(email: "John@doe.co" , password: "12345")
+                                    # }
+
+                                    # Retrieve all Users
+                                    # {
+                                    #   users {
+                                    #     email
+                                    #     id
+                                    #   }
+                                    # }
+
+                                    # Login
+                                    # mutation{
+                                    #   login(email:"John@doe.co",password:"12345"){
+                                    #     accessToken
+                                    #   }
+                                    # }
+
+                                    # Protected Route exmplae
+                                    # {
+                                    #   protectedRouteExample
+                                    # }
+
+                                    # Revoking all refresh token by userId
+                                    # mutation{
+                                    #   revokeRefreshTokensForUser(userId: 1)
+
+                                    # }

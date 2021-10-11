@@ -1,4 +1,4 @@
-import { User } from "./entity/User";
+import { User } from "../entity/User";
 import { sign } from "jsonwebtoken";
 import "dotenv/config";
 

@@ -1,12 +1,12 @@
 import { Resolver, Query, Mutation , Arg, ObjectType, Field, Ctx, UseMiddleware, Int} from 'type-graphql';
 import { hash, compare } from 'bcryptjs';
-import { User } from './entity/User';
-import { MyContext } from './MyContext';
+import { User } from '../entity/User';
+import { MyContext } from '../context/MyContext';
 
 import dotenv from 'dotenv';
-import { createAccessToken, createRefreshToken } from './JWTService';
-import { isAuthMiddleware } from './isAuthMiddleware';
-import { sendRefreshToken } from './sendRefreshToken';
+import { createAccessToken, createRefreshToken } from '../services/JWTService';
+import { isAuthMiddleware } from '../middlewares/isAuthMiddleware';
+import { sendRefreshToken } from '../services/sendRefreshToken';
 import { getConnection } from 'typeorm';
 
 dotenv.config();
