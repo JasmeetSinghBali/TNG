@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation , Arg, ObjectType, Field, Ctx, UseMiddleware} from 'type-graphql';
+import { Resolver, Query, Mutation , Arg, ObjectType, Field, Ctx, UseMiddleware, Int} from 'type-graphql';
 import { hash, compare } from 'bcryptjs';
 import { User } from './entity/User';
 import { MyContext } from './MyContext';
@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import { createAccessToken, createRefreshToken } from './JWTService';
 import { isAuthMiddleware } from './isAuthMiddleware';
 import { sendRefreshToken } from './sendRefreshToken';
+import { getConnection } from 'typeorm';
+
 dotenv.config();
 
 // ✨ Custom return type for log in mutation
@@ -60,6 +62,20 @@ export class UserResolver{
             console.log(err);
             return false;
         }
+    }
+
+    // 🏷 Only for testing out the tokenVersion revoking of refresh token functionality
+    // =================== DONT INCLUDE THIS MUTATION AT PRODUCTION LEVEL ==============
+    @ Mutation(()=>Boolean)
+    async revokeRefreshTokensForUser(
+        @Arg('userId',()=>Int) userId: number
+    ){
+        // establishing connection, finding User entity and incrementing the userId field by 1
+        await getConnection()
+            .getRepository(User)
+            .increment({id:userId},'tokenVersion',1);
+        
+        return true;
     }
 
     // 🧨 Logs in User and return access token & refresh token

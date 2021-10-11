@@ -29,6 +29,8 @@
                 Loaded users:  [ User { id: 1, firstName: 'Timber', lastName: 'Saw', age: 25 } ]
                 Here you can setup and run express/koa/any other framework.
 
+---
+
 > Step -2 Setup graphql server with express
 
 - [x] npm i express apollo-server-express graphql --save
@@ -50,10 +52,14 @@
 
 - [x] visit localhost:5000 & localhost:5000/graphql to check everything is set up correctly
 
+---
+
 > Step-3 Set up typegraphql
 
 - [x] npm i type-graphql --save
 - [x] build schema in better way via type-graphql refer **src-> UserResolver.ts** and then use that inside of index.ts to build Schema
+
+---
 
 > Step-4 Register Resolver (mutation) refer UserResolver.ts and entity->User.ts
 
@@ -69,6 +75,8 @@
                   id
                 }
               }
+
+---
 
 > Step-5 Login Users & return access tokens
 
@@ -90,6 +98,8 @@
                         accessToken
                       }
                     }
+
+---
 
 > Step-6 Generate and Return refresh tokens
 
@@ -113,6 +123,8 @@
               # or go the response headers set-cookie
               jid=LongRefreshTokenString
 
+---
+
 > Step -7 Protected Routes with isAuthMiddleware.ts
 
                             # Login
@@ -128,6 +140,8 @@
                              }
                             # headers(Use AccessToken recieved after mutation login response)
                             authorization : Bearer AccessToken
+
+---
 
 > Step-8 Handle case when someone make request with expired access token i.e Cookie based regeneration of new Refresh & new Access token via old refresh token inside request header cookies /refresh_token refer index.ts
 
@@ -179,3 +193,51 @@
                     ok: true,
                     accessToken:'457847852n435j2h3j4h2j3h4j2h3j4234'
                   }
+
+---
+
+> Step-9 (IMPORTANT) (Kinda of Logout) Set up system to revoke refresh tokens i.e in case when user forgets password/ or account gets hacked then we will revoke all the refresh tokens
+
+**One way could be to maintain a blacklist & whitelist of the JWT refresh tokens**
+**2nd way is to keep version of the jwt token , then we can increment the version which will automatically invalidate previous/old version token**
+
+> Implementation will be version based Validation/Invalidation for JWT token
+
+**refer User.ts inside entity , JWTService.ts & index.ts**
+**To inspect payloads use jwt.io**
+
+                      // 🎇 so whenever a refresh token is sent a tokenVersion is also passed as response
+
+                      @Column("int", {default: 0})
+                      tokenVersion: number;
+
+> A new Mutation(only for testing not for deployement) instead create a function for production level that revokes refresh token by changing the tokenVersion refer UserResolver.ts
+
+                  # revoking all refresh tokens for a particular user bu passing their userId
+                  mutation{
+                    revokeRefreshTokensForUser(userId: 1)
+                  }
+
+                  # 200  response
+                  {
+                    "data": {
+                      "revokeRefreshTokensForUser": true
+                    }
+                  }
+
+                  # Now when the /refresh_token endpoint with with the same old refresh token set as cookies in postman request is made it returns empty accessToken
+                  {
+                      "ok": false,
+                      "accessToken": ""
+                  }
+
+                  # Now again hit the login route in graphql
+                  # copy the cookie header response and inspect in jwt.io will have payload with incremented tokenVersion
+
+---
+
+> ## Frontend
+
+---
+
+> Step- 10

@@ -18,5 +18,9 @@ export class User extends BaseEntity {
     @Column("text")
     password: string;
 
+    // 🎇 so whenever a refresh token is sent a tokenVersion is also passed as response
+    @Column("int", {default: 0})
+    tokenVersion: number;
+
 }
 

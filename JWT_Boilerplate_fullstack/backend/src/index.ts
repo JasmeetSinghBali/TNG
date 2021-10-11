@@ -55,12 +55,19 @@ import { sendRefreshToken } from "./sendRefreshToken";
         }
 
         //Step-3 ✔ token is valid and we can send back new access token
-        // payload has {userId:'',userEmail:''} refer JWTService.ts
+        // payload has {userId:'',userEmail:'',tokenVersion: int}  refer JWTService.ts
 
         // 🍳 search the userid in db and grab the details 
         const user = await User.findOne({ id: payload.userId });
 
         if(!user){
+            return res.send({ ok:false, accessToken:'' });
+        }
+
+        // 🍳 check wheather the tokenVersion matches with the saved tokenVersion inside User schema/entity
+        if(user.tokenVersion !== payload.tokenVersion){
+            // tokenVersion mismatch with postgres stored User
+            // send empty token
             return res.send({ ok:false, accessToken:'' });
         }
 
