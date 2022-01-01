@@ -80,6 +80,11 @@
                     nest g controller <controllerName> --no-spec
                     # only add --no-spec flag if you dont need unit test file for this controller
 
+> ### best practice is to put similir prefix routes in seprate controller
+
+                    # to run tests
+                    npm run test:watch
+
 > # 📚 refferences
 
 - ⛑ https://docs.nestjs.com/
