@@ -85,7 +85,7 @@
                     # to run tests
                     npm run test:watch
 
-> ## 2. RequestObjects
+> ## 2. RequestObjectss
 
 > ## 📚 refferences
 
