@@ -85,7 +85,53 @@
                     # to run tests
                     npm run test:watch
 
-> ## 2. RequestObjectss
+> ## 2. Request Objects (extracting pieces of info from request like params)
+
+> make use @Param () decorator in Nest for GET
+
+                    # student object in student ID
+                    @Get('/:studentId')
+                    getStudentById(
+                        @Param () params: {studentId: string}
+                    ) {
+                        console.log(params)
+                        return 'Get Student By Id';
+                    }
+
+- further it can be simplified while the required params can be destructured at the time of decorator defination
+
+                    # @Param('destructuredObjectFromParams')
+                    @Param ('studentId') studentId: string
+                    console.log(studentId)
+
+> make use @Body () decorator in Nest for POST
+
+                    @Post()
+                    createStudent(
+                        @Body() body
+                    ) {
+                        return `Create's New Student with details\n ${JSON.stringify(body)}`;
+                    }
+
+> use @Body & @Parma together for PUT
+
+                    @Put('/:studentId')
+                    updateStudentById(
+                        @Param('studentId') studentId: string,
+                        @Body() body
+                    ) {
+                        return `Update's\n student id: ${JSON.stringify(studentId)}\n with new data ${body}`;
+                    }
+
+> Further their are @Query, @Session, @Next and @Ip() that can be useful refer- https://docs.nestjs.com/controllers#request-object
+
+                    @Put('/:studentId')
+                    updateStudentById(
+                        @Param('studentId') studentId: string,
+                        @Body() body
+                    ) {
+                        return `Update's\n student id: ${studentId}\n with new data ${JSON.stringify(body)}`;
+                    }
 
 > ## 📚 refferences
 
