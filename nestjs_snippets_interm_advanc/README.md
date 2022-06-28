@@ -21,3 +21,11 @@
 
 - injecting cache manager to interact with it
   ref: app.controller.ts & app.service.ts
+
+> b) caching at the route level via cacheInterceptor
+
+- an entire controller can be decorated with @UseInterceptors(CacheInterceptors) ref: app.controller.ts
+
+- **📝 IMP: to implement the cacheInterceptor to all the controllers at once , go to the app.module.ts and in providers array proved the APP_INTERCEPTOR(global interceptor) ref: app.module.ts**
+
+- **📝IMP: custom key and ttl can be given for each route/controller via @CacheKey() & @CacheTTL()**

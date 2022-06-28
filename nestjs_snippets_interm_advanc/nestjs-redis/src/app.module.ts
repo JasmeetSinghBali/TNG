@@ -1,4 +1,5 @@
-import { CacheModule, Module } from '@nestjs/common';
+import { CacheInterceptor, CacheModule, Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -14,6 +15,10 @@ import { AppService } from './app.service';
     })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  // 📝 the APP_INTERCEPTOR is global interceptor with specifying CacheInterceptor caching will be applied on every routes/controller in the app at once
+  providers: [AppService,{
+    provide: APP_INTERCEPTOR,
+    useClass: CacheInterceptor,
+  }],
 })
 export class AppModule {}
