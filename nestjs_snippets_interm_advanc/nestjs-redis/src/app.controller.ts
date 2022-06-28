@@ -5,8 +5,9 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  // 📝 caching via direct access of cache manager
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async cacheManager_caching(){
+    return this.appService.cacheManager_caching();
   }
 }
