@@ -67,3 +67,14 @@ dependencies
             npm run start:dev
 
 - removed app.controller , app.controller.spec & app.service.ts from src folder as no need its a graphql server
+
+> **📚ref: IMP- https://docs.nestjs.com/graphql/quick-start**
+
+- set up resolvers(request-handler)
+- for each entity different folder would be their
+- so all the resolvers, services and models will be inside users folder and each time a new entity is their just create a new seprate folder for it
+
+            users(entity)
+              -users.module.ts (export a class as UsersModule & register in the app.module.ts in root)
+              -users.service.ts
+              -users.resolver.ts
