@@ -74,7 +74,14 @@ dependencies
 - for each entity different folder would be their
 - so all the resolvers, services and models will be inside users folder and each time a new entity is their just create a new seprate folder for it
 
+            # 🎯Project-structure-api-graphql
             users(entity)
               -users.module.ts (export a class as UsersModule & register in the app.module.ts in root)
-              -users.service.ts
-              -users.resolver.ts
+              -users.service.ts (db/repository interactions)
+              -users.resolver.ts (request handler)
+
+              * interfaces (refers to the data type of the reposi/DB)
+
+              * dto(data transfer objects is for specifying type of the request coming in and response going out)
+                - args (stands for arguments i.e in REST sense params)
+                  - get-user.args.ts
