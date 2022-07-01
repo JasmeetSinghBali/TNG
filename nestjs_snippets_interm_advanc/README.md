@@ -1,6 +1,6 @@
 > # 🎁 Contains nestjs snippets for diff use-case & scenarios
 
-> 1.🎯 Caching [ redis + unit testing ]
+> 1. 🎯 Caching [ redis + unit testing ]
 
             nest new nestjs-redis
 
@@ -53,3 +53,17 @@
 
             # go in app.module.ts
             # edit options object in CacheModule.register()
+
+> 2. 🎯 Scalable nestjs + graphql server snippet/boilerplate
+
+dependencies
+
+- @nestjs/graphql
+- graphql-tools
+- graphql
+- apollo-server-express
+
+            # after installing above dependency
+            npm run start:dev
+
+- removed app.controller , app.controller.spec & app.service.ts from src folder as no need its a graphql server
