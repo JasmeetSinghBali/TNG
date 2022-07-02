@@ -62,6 +62,7 @@ dependencies
 - graphql-tools
 - graphql
 - apollo-server-express
+- @nestjs/apollo
 
             # after installing above dependency
             npm run start:dev
