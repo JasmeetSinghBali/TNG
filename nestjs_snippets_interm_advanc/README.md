@@ -85,3 +85,6 @@ dependencies
               * dto(data transfer objects is for specifying type of the request coming in and response going out)
                 - args (stands for arguments i.e in REST sense params)
                   - get-user.args.ts
+                - input (request like creating user)
+                  -create-user.input.ts
+                  -update-user.input.ts

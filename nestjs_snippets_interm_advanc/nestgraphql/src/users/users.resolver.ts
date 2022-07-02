@@ -1,6 +1,9 @@
-import {Resolver, Query, Args} from '@nestjs/graphql';
+import {Resolver, Query, Args, Mutation} from '@nestjs/graphql';
 import { GetUserArgs } from './dto/args/get-user.args';
 import { GetUsersArgs } from './dto/args/get-users.args';
+import { CreateUserInput } from './dto/input/create-user.input';
+import { DeleteUserInput } from './dto/input/delete-user.input';
+import { UpdateUserInput } from './dto/input/update-user.input';
 import { usermodelInterface } from './interfaces/userModel';
 import { UsersService } from './users.service';
 
@@ -20,5 +23,22 @@ export class UsersResolver {
     @Query(()=>[usermodelInterface],{name: 'users', nullable: 'items' })
     getUsers(@Args() getUsersArgs: GetUsersArgs): usermodelInterface[]{
         return this.usersService.getUsers();
+    }
+
+    // 🎯 Setup- Mutations (Update,Create,Delete)
+    // anonymous function inside mutation decorator that defines the return type of this mutation
+    @Mutation(()=>usermodelInterface)
+    createUser(@Args('createUserData') createUserData: CreateUserInput ): usermodelInterface{
+        return this.usersService.createUser();
+    }
+
+    @Mutation(()=>usermodelInterface)
+    updateUser(@Args('updateUserData') updateUserData: UpdateUserInput ): usermodelInterface{
+        return this.usersService.updateUser();
+    }
+
+    @Mutation(()=>usermodelInterface)
+    deleteUser(@Args('deleteUserData') deleteUserData: DeleteUserInput): usermodelInterface{
+        return this.usersService.deleteUser();
     }
 }
