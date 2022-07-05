@@ -23,3 +23,7 @@
 5. setting up stub folder for sample/mock data to perform unit testing
 
 **NOTE- it always better to export stub as function return value not as an object as if this object is used in lot of spaces then if someone is able to mutate this then all the code that uses this will have unexpected result as object are pass by refference.**
+
+6. write unit test for each of the function inside user.controller.ts in a GIVEN_WHEN_THEN fashion where given and when block refers to the setup code and then do tests in then block
+
+17:34
