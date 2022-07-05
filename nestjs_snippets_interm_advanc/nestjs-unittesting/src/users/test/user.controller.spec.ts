@@ -2,6 +2,9 @@ import { Test } from "@nestjs/testing"
 import { UsersController } from "../users.controller"
 import { UsersService } from "../users.service"
 
+// 📝 tell jest to automock user.service.ts
+jest.mock('../../users.service');
+
 describe('UsersController',()=>{
     beforeEach(async()=>{
         //📝 grab the user controller via creating a test module refference for testing it with jest

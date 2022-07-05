@@ -18,7 +18,7 @@
 
 3. set up mock/fake userService for the user.service.ts that will have all the methods but will return dummy values which can be inspected. ref: **DUNDERmocksDUNDER** folder in the users folder
 
-4. make sure the mocks folder is adjacent to the file u are mocking.
+4. make sure the mocks folder is adjacent to the file u are mocking and also the file name of the mock and the real one is the same to help jest to identify the mocking along with double dunder prefix and suffix "mock" folder name should be the exact same name for jest identifying this.
 
 5. setting up stub folder for sample/mock data to perform unit testing
 
