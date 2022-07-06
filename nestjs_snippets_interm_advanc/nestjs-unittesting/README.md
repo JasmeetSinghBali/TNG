@@ -27,3 +27,14 @@
 6.  write unit test for each of the function inside user.controller.ts in a GIVEN_WHEN_THEN fashion where given and when block refers to the setup code and then do tests in then block
 
                     yarn test users.controller.spec.ts
+
+7.  testing the repository users.repository.spec.ts
+
+- since the user.repository is using injection for injecting the userModel it has to be mocked to be tested as the injected userModel is a depend and must be mocked.
+
+- setup abstact mock repository just like normal abstract repository that way the abstract repository can be reused in different tests while mocking.
+
+                    database
+                        - test
+                            - support
+                                * mock.model.ts
