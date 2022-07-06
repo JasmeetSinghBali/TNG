@@ -42,6 +42,10 @@ describe('UsersController',()=>{
             test('[then] it should call user service',()=>{
                 expect(usersService.getUserById).toBeCalledWith(userStub().userId);
             })
+
+            test('[then] it should also return a user',()=>{
+                expect(user).toEqual(userStub());
+            })
         })
     })
 })
