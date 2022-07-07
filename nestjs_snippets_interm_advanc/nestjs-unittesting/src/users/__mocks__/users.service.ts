@@ -4,6 +4,7 @@ import { userStub } from "../test/stubs/user.stub";
 export const UsersService = jest.fn().mockReturnValue({
     // returns the method that we want to mock along with the mock returned data
     // 📝 mock resolved value simulates returns  promises responses just like it is in real user.service.ts
+    // 📝 the jest.fn() automatically spies on this functions
     getUserById: jest.fn().mockResolvedValue(userStub()),
     getUsers: jest.fn().mockResolvedValue([userStub()]),
     createUser: jest.fn().mockResolvedValue(userStub()),
