@@ -603,10 +603,12 @@
     tslib "2.2.0"
     uuid "8.3.2"
 
-"@nestjs/cqrs@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/cqrs/-/cqrs-8.0.0.tgz#ef5e8ddc9d50eae5ca18f0c86c8928e072ba1d93"
-  integrity sha512-6Fy0jgUZatRXirfAhDVy3Du2UYoBLrlT7yjK4ZX3L7rBMdfTYPqmn8wE2JH3kXW3yUqLDdnS9PotHf6Y0UzLxw==
+"@nestjs/cqrs@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/cqrs/-/cqrs-9.0.1.tgz#3aaa5dbee37d5ac3670e320d6a241a076e189082"
+  integrity sha512-DsqkAaIHy9+Ot4FJybmlDQk0HBDTGztz0F3LcMnatFDQv1X56W0Y2+R/7jjwHsmHzQfbffT2FGyCOx2/9apFCg==
+  dependencies:
+    uuid "8.3.2"
 
 "@nestjs/mongoose@^8.0.0":
   version "8.0.0"

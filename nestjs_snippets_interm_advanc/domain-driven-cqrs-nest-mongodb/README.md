@@ -9,5 +9,20 @@ AIM- the idea is to represent the model in two different ways one or reading fro
 
 Conclusion- helps in loosely coupled and scalable architecture in contrast to typical service-driven design.
 
-> ## starter campers-basic-api setup that will be converted into CQRS design
-hashRefCommit: f2ba3a44ca71d42e943d39143669c095528ab720
+> 🎯 IMP: starter campers-basic-api setup that will be converted into CQRS design
+> hashRefCommit: f2ba3a44ca71d42e943d39143669c095528ab720
+
+> Imp Notes [take care while applying cqrs architecture]
+
+1. break down the controllers operations into specific tasks like say their is route to update user data is controller than breaking it down further would be update user's password which is a task. ref: updateCamperAllergies in camper.controller.ts
+
+2. CQRS comes with logic of each operations in the system with its own command-handlers & query-handlers
+
+
+                yarn add @nestjs/cqrs
+
+                # in campers entity
+                *campers
+                    *db_related_operations
+
+3. In domain-driven design approach we have all the data design/schema in a class and also the methods that manipulate & use that data resides/live the same class that way data encapsulation can be achieved.
