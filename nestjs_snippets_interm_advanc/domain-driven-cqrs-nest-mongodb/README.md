@@ -28,3 +28,5 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 3. In domain-driven design approach we have all the data design/schema in a class and also the methods that manipulate & use that data resides/live the same class that way data encapsulation can be achieved.
 
 4. Note- javascript passes pass by reff(ACTUAL) for non-primitive data type and pass by value(COPY) for primitive data types by default, u can explicitely pass this by pass by value(COPY) for non-primitive data types by using spread operator ref: Camper.ts
+
+5. Class that convert schema/documet-> model and model->schema ref: db_related_operations/camper-schema.factory.ts
