@@ -8,3 +8,6 @@
 AIM- the idea is to represent the model in two different ways one or reading from it and other when we updating it.
 
 Conclusion- helps in loosely coupled and scalable architecture in contrast to typical service-driven design.
+
+> ## starter campers-basic-api setup that will be converted into CQRS design
+hashRefCommit: f2ba3a44ca71d42e943d39143669c095528ab720
