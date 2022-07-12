@@ -45,3 +45,5 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 > Setting up command flow for updating camper allergies
 
 ref: campers/commands/update-allergies folder
+
+> Setting up queries model
