@@ -35,3 +35,7 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
    Note- the camper-entity.repository works with Camper.ts for command based operations i.e write related db changes
 
 7. set up commands handler & controller for create-camper operation
+
+8. finally wiring up create-camper.handler and then emit event for other part of the program to know about the camper create command
+
+9. events are triggered after command has been executed
