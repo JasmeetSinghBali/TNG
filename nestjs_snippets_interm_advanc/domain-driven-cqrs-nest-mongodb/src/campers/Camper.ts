@@ -1,6 +1,7 @@
 import { AggregateRoot } from "@nestjs/cqrs"
 
 /**📝This class act as Domain Model that will hold all the functionality within and the data that comes back from it*/
+//🎯 and act as write or command operations model a/c to CQRS domain driven design
 export class Camper extends AggregateRoot{
     /**📝 name,age and allergies are only accessible inside this Camper class as they are all private */
     constructor(

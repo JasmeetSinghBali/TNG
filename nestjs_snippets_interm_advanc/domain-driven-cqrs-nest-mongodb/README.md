@@ -30,3 +30,6 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 4. Note- javascript passes pass by reff(ACTUAL) for non-primitive data type and pass by value(COPY) for primitive data types by default, u can explicitely pass this by pass by value(COPY) for non-primitive data types by using spread operator ref: Camper.ts
 
 5. Class that convert schema/documet-> model and model->schema ref: db_related_operations/camper-schema.factory.ts
+
+6. 📝:IMP create camper repository ref: db_related_operations/camper-entity.repository.ts
+   Note- the camper-entity.repository works with Camper.ts for command based operations i.e write related db changes
