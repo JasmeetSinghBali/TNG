@@ -33,3 +33,5 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 
 6. 📝:IMP create camper repository ref: db_related_operations/camper-entity.repository.ts
    Note- the camper-entity.repository works with Camper.ts for command based operations i.e write related db changes
+
+7. set up commands handler & controller for create-camper operation
