@@ -5,9 +5,9 @@ import { IdentifiableEntitySchema } from "src/database/identifiable-entity.schem
 Schema({versionKey: false, collection: 'campers'})
 export class CamperSchema extends IdentifiableEntitySchema{
     @Prop()
-    name: string;
+    readonly name: string;
     @Prop()
-    age: number;
+    readonly age: number;
     @Prop()
-    allergies: string[];
+    readonly allergies: string[];
 }

@@ -4,8 +4,9 @@ import { AggregateRoot } from "@nestjs/cqrs"
 export class Camper extends AggregateRoot{
     /**📝 name,age and allergies are only accessible inside this Camper class as they are all private */
     constructor(
+        private readonly _id: string,
         private readonly name: string,
-        private readonly age: string,
+        private readonly age: number,
         private readonly allergies: string[],
     ){
         super();
@@ -24,5 +25,8 @@ export class Camper extends AggregateRoot{
     /**📝: passing a copy of the allergies array via spread operator as allergies is not a primitive data type so that it passes the pass by value(copy) not pass by reff(ACTUAL) for security reason to prevent the callers to mutate the actual allergies array of string*/
     getAllergies(){
         return [...this.allergies];
+    }
+    getID(){
+        return this._id;
     }
 }

@@ -14,7 +14,7 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 
 > Imp Notes [take care while applying cqrs architecture]
 
-1. break down the controllers operations into specific tasks like say their is route to update user data is controller than breaking it down further would be update user's password which is a task. ref: updateCamperAllergies in camper.controller.ts
+1. break down the controllers operations into specific tasks like say their is route to update user data is controller than breaking it down further into a specific task would be update user's password which is a specific updating task. ref: updateCamperAllergies in camper.controller.ts
 
 2. CQRS comes with logic of each operations in the system with its own command-handlers & query-handlers
 
