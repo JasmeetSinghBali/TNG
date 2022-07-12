@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { CreateCamperCommand } from './commands/create-camper.command';
+import { CreateCamperCommand } from './commands/create-camper/create-camper.command';
+import { UpdateAllergiesCommand } from './commands/update-allergies/update-allergies.command';
 import { CreateCamperRequest } from './dto/request/create-camper-request.dto';
 import { UpdateCamperAllergiesRequest } from './dto/request/update-camper-allergies-request.dto';
 
@@ -24,9 +25,16 @@ export class CampersController {
     );
   }
 
-  @Patch(':id')
+  @Patch(':id/allergies')
   async updateCamperAllergies(
     @Param('id') camperId: string,
     @Body() updateCamperAllergiesRequest: UpdateCamperAllergiesRequest,
-  ): Promise<void> {}
+  ): Promise<void> {
+    await this.commandBus.execute<UpdateAllergiesCommand,void>(
+      new UpdateAllergiesCommand(
+        camperId,
+        updateCamperAllergiesRequest.allergies,
+      )
+    )
+  }
 }

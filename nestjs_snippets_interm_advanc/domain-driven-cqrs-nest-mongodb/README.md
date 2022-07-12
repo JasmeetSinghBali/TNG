@@ -41,3 +41,7 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 9. events are triggered after command has been executed
 
 10. finally we want to presist the newly created camper in the database ref: camper-factory.ts
+
+> Setting up command flow for updating camper allergies
+
+ref: campers/commands/update-allergies folder

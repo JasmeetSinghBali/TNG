@@ -1,3 +1,4 @@
+import { BadRequestException } from "@nestjs/common";
 import { AggregateRoot } from "@nestjs/cqrs"
 
 /**📝This class act as Domain Model that will hold all the functionality within and the data that comes back from it*/
@@ -8,7 +9,7 @@ export class Camper extends AggregateRoot{
         private readonly _id: string,
         private readonly name: string,
         private readonly age: number,
-        private readonly allergies: string[],
+        private allergies: string[],
     ){
         super();
     }
@@ -29,5 +30,13 @@ export class Camper extends AggregateRoot{
     }
     getID(){
         return this._id;
+    }
+
+    updateAllergies(allergies: string[]): void{
+        const allergiesLower = allergies.map(allergy => allergy.toLowerCase())
+        if(allergiesLower.includes('chocolate')){
+            throw new BadRequestException('Allergy cannot be chocolate as this is a chocolate bar camp...')
+        }
+        this.allergies = allergies;
     }
 }

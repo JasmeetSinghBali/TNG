@@ -89,3 +89,5 @@ dependencies
                 - input (request like creating user)
                   -create-user.input.ts
                   -update-user.input.ts
+
+> 3. 🎯 Domain driven CQRS- command-query segregation model for write and read operations with events
