@@ -39,3 +39,5 @@ Conclusion- helps in loosely coupled and scalable architecture in contrast to ty
 8. finally wiring up create-camper.handler and then emit event for other part of the program to know about the camper create command
 
 9. events are triggered after command has been executed
+
+10. finally we want to presist the newly created camper in the database ref: camper-factory.ts
