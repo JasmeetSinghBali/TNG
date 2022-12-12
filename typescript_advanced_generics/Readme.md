@@ -12,7 +12,7 @@ ref: https://www.typescriptlang.org/docs/handbook/2/generics.html
 
 - The idea of using typescript is always good when writing any sort of abstractions.
 
-- in contrast to javascript where you would consume anything inside function & then return anything out of the function which basically exposes the structuring/shape of the data & its types to be decided by the end-user or consimer when they feed in data to these functions.
+- in contrast to javascript where you would consume anything inside function & then return anything out of the function which basically exposes the structuring/shape of the data & its types to be decided by the end-user or consumer when they feed in data to these functions.
 
 To sum up , typescript provides the way to build code(i.e provide type inferences) for writing code in contrast to javascript.
 
