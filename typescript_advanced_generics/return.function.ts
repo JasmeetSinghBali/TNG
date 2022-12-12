@@ -21,3 +21,12 @@ const returnWhatIFeedLiterally = <TSomething>(t:TSomething) => {
 
 const one = returnWhatIFeedLiterally(1);
 const hiphop = returnWhatIFeedLiterally("hiphop")
+
+const obj = returnWhatIFeedLiterally({
+    name: 'Jazz',
+    age: '23'
+});
+
+// ✨ type inferences autocompletes
+obj.age = '45';
+obj.name = 'john';
