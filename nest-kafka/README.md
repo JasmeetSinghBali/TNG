@@ -23,3 +23,10 @@ yarn start:dev
 
 # make a get request at localhost:3000 which produces a message and consumer logs out the topics from the producers
 ```
+
+> Kafka snippet upgrade
+
+1. error-handling
+2. retry mech to push failed messages/topics
+3. SOLID design approach
+4. if retry mech fails then persist these failing messaging in mongoDB via dead letter queue so no messages are lost
