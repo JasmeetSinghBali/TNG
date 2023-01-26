@@ -1,0 +1,1 @@
+export const WBPROCESSING_QUEUE = 'wbprocessing' // reff: to the injection token used in app module while registering this bull mq
